@@ -1,15 +1,15 @@
-FROM python:3
+FROM python:3.11
 
-# Install required system packages, including distutils
+# Update and install required system packages, including distutils
 RUN apt-get update && apt-get install -y python3-distutils
 
-# Install Django 3.2
+# Install Django
 RUN pip install django==3.2
 
-# Copy all files from the current directory into the container
+# Copy your application files
 COPY . .
 
-# Run migrations
+# Run database migrations
 RUN python manage.py migrate
 
 # Expose port 8000
